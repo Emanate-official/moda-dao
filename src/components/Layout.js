@@ -1,7 +1,6 @@
 import React from "react";
 import Nav from "./Nav";
 import Footer from "./Footer";
-import { history } from "./Router";
 
 const Layout = ({
   header,
@@ -16,10 +15,10 @@ const Layout = ({
   // Set default links
   if (!links)
     links = [
-      { label: "About", onClick: () => history.push("/about") },
-      { label: "Partners", onClick: () => history.push("/partners") },
-      { label: "People", onClick: () => history.push("/people") },
-      { label: "Launch DAO", onClick: () => history.push("/") }
+      { label: "About", route: "/about" },
+      { label: "Partners", route: "/partners" },
+      { label: "People", route: "/people" },
+      { label: "Launch DAO", route: "/" }
     ];
 
   // For a dropdown menu item, add an object like this to the links array

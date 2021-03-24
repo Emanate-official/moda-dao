@@ -16,11 +16,11 @@ const _Nav = ({ links, noBrand = false, activeTab }) => {
   const renderLinks = () => (
     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
       <Nav>
-        {links.map(({ label, onClick, children }, i) => {
+        {links.map(({ label, route, children }, i) => {
           const classes = label === activeTab ? "active" : "";
           return !children ? (
             <Nav.Link
-              onClick={onClick}
+              onClick={() => history.push(route)}
               key={i}
               className={classes}
               children={label}
