@@ -1,0 +1,6 @@
+@import "../../constants/colors";
+@import "../../constants/mixins";
+
+.navbar {
+  @include boxShadowShallow();
+}

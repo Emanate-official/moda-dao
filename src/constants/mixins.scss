@@ -1,0 +1,18 @@
+@mixin flex($justify-content: center, $align-items: center, $direction: row) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $direction;
+}
+
+@mixin boxShadow {
+  box-shadow: 1px 1px 10px 3px rgba(150, 150, 150, 0.3);
+}
+
+@mixin boxShadowShallow {
+  box-shadow: 1px 1px 7px 3px rgba(150, 150, 150, 0.16);
+}
+
+@mixin boxShadowRaised {
+  box-shadow: 1.5px 1.5px 9px 7px rgba(150, 150, 150, 0.2);
+}
