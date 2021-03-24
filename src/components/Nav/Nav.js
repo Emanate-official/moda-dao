@@ -11,7 +11,7 @@ const _Nav = ({ links, noBrand = false, activeTab }) => {
       { label: "About", onClick: () => history.push("/about") },
       { label: "Partners", onClick: () => history.push("/partners") },
       { label: "People", onClick: () => history.push("/people") },
-      { label: "People", onClick: () => history.push("/people") },
+      { label: "Launch DAO", onClick: () => history.push("/") },
     ];
 
   // For a dropdown menu item, add an object like this to the links array
