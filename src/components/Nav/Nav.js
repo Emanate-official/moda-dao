@@ -16,7 +16,7 @@ const _Nav = ({ links, noBrand = false, noMetaMask = false, activeTab }) => {
 
   const renderMetaMask = () => (
     <Nav.Item>
-      Meta mask
+      Launch DAO
     </Nav.Item>
   );
 
