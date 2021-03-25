@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
+import Table from "../components/tables/StakeTable";
 
 const Stake = () => {
   return (
@@ -8,6 +9,7 @@ const Stake = () => {
         <div className="row">
           <div className="col">
             <h1>Stake</h1>
+            <Table></Table>
           </div>
         </div>
       </div>

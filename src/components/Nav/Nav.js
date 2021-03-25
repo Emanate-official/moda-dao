@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar, NavDropdown, NavItem } from "react-bootstrap";
 import { history } from "../Router";
 import "./Nav.scss";
 
-const _Nav = ({ links, noBrand = false, activeTab }) => {
+const _Nav = ({ links, noBrand = false, noMetaMask = false, activeTab }) => {
 
   const renderBrand = () => (
     <Navbar.Brand
@@ -11,6 +11,13 @@ const _Nav = ({ links, noBrand = false, activeTab }) => {
       onClick={() => history.push("/")}
     >
     </Navbar.Brand>
+  );
+
+  const renderMetaMask = () => (
+    <Navbar.Item
+      label="Meta Mask"
+    >
+    </Navbar.Item>
   );
 
   const renderLinks = () => (
@@ -45,6 +52,7 @@ const _Nav = ({ links, noBrand = false, activeTab }) => {
       {!noBrand && renderBrand()}
       {!links.length || <Navbar.Toggle aria-controls="basic-navbar-nav" />}
       {!links.length || renderLinks()}
+
     </Navbar>
   );
 };
