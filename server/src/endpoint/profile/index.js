@@ -11,8 +11,17 @@ const schema = Joi.object({
 });
 
 router.get("/profile", async (request, response) => {
-  const stats = await getLoggedStats();
-  response.send(stats);
+  const client = await connectClient();
+  const result = await client.query(`SELECT t.* FROM public."Profile" t LIMIT 501`);
+  console.log(result?.rows);
+  response.send(result?.rows);
+});
+
+router.get("/profile/:address", async (request, response) => {
+  console.log(request.params);
+  const client = await connectClient();
+  const result = await client.query(`SELECT t.* FROM public."Profile" t address = $1`, [request.params.address]);
+  response.send(result?.rows);
 });
 
 router.post("/profile"),

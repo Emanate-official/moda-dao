@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const profiles = require("./endpoint/profile");
+const stats = require("./endpoint/stats");
 
 const authentication = require("./endpoint/authentication");
 const authenticationCheck = require("./endpoint/authentication/check");
@@ -25,9 +26,10 @@ const initialiseServer = async () => {
   app.use(express.json());
 
   // Register endpoints.
-  app.use("/api", authentication);
-  app.use("/api", secureRoute, authenticationCheck);
+  // app.use("/api", authentication);
+  // app.use("/api", secureRoute, authenticationCheck);
   app.use("/api", profiles);
+  app.use("/api", stats);
 
   app.listen(process.env.PORT);
   console.log(`Server listening on localhost:${process.env.PORT}`);

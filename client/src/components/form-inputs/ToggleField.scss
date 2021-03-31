@@ -1,0 +1,47 @@
+@import "../../../constants/mixins";
+@import "../../../constants/colors";
+
+$size: 1.8rem;
+.toggle-field {
+    
+  &.inline {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    label {
+      margin-left: 1rem;
+      margin-bottom: 0;
+    }
+  	align-items: center;
+  }
+
+  .switch {
+    cursor: pointer;
+    @include flex(flex-start);
+    background-color: $gray-500;
+    width: 2 * $size;
+    height: $size;
+    border-radius: $size;
+    padding-left: 0.1 * $size;
+
+    input {
+      display:none;
+    }
+    &.checked {
+      background: $primary;
+      .slider {
+        transform: translate($size, 0);
+      }
+    }
+
+    .slider {
+      height: 0.75 * $size;
+      width: 0.75 * $size;
+      border-radius: 50%;
+      background: $gray-100;
+      transition: 200ms;
+    }
+  }
+
+}
