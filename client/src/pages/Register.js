@@ -16,11 +16,16 @@ const Register = () => {
     { label: "Activity", route: "/actvity" }
   ];
 
-  const { data, error } = useSWR("/profile");
+  const { data, error } = useSWR("/profile", { initialData: [], revalidateOnMount: true });
+  console.log(data);
+
   const isLoading = !data && !error;
   const isSubmitting = false;
   // const [isSubmitting, setShow] = useState("");
   const initialValues = [{ }];
+
+  const eth = window.ethereum;
+  console.log(eth);
 
   return (
     <Layout links={links}>

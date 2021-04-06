@@ -3,6 +3,12 @@ import Layout from "../components/Layout";
 import Card from "../components/Card";
 
 const Home = () => {
+  const links = [
+    { label: "About", route: "/stake" },
+    { label: "Partners", route: "/partners" },
+    { label: "People", route: "/people" }
+  ];
+
   return (
     <Layout>
       <div className="container-fluid py-5">

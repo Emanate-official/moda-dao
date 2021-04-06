@@ -17,8 +17,7 @@ const Layout = ({
     links = [
       { label: "About", route: "/about" },
       { label: "Partners", route: "/partners" },
-      { label: "People", route: "/people" },
-      { label: "Launch DAO", route: "/" }
+      { label: "People", route: "/people" }
     ];
 
   // For a dropdown menu item, add an object like this to the links array

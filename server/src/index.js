@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const profiles = require("./endpoint/profile");
+const profile = require("./endpoint/profile");
 const stats = require("./endpoint/stats");
 
 const authentication = require("./endpoint/authentication");
@@ -28,7 +28,7 @@ const initialiseServer = async () => {
   // Register endpoints.
   // app.use("/api", authentication);
   // app.use("/api", secureRoute, authenticationCheck);
-  app.use("/api", profiles);
+  app.use("/api", profile);
   app.use("/api", stats);
 
   app.listen(process.env.PORT);
