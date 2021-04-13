@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Layout from "../components/Layout";
 import Profiles from "../components/Profiles";
-import MetaMaskLoginButton from "react-metamask-login-button";
+import MetaMaskConnectButton from "../components/MetaMaskConnectButton";
 import { Formik, Form } from "formik";
 import Input from "../components/form-inputs/Input";
-import Loader from "../components/Loader";
 import useSWR from "swr";
 import ErrorMessage from "../components/ErrorMessage";
+import getWalletAddress from "../apis/web3/getWalletAddress";
+import connectWeb3 from "../apis/web3/connect";
 
 const Register = () => {
   const links = [
@@ -22,10 +23,26 @@ const Register = () => {
   const isLoading = !data && !error;
   const isSubmitting = false;
   // const [isSubmitting, setShow] = useState("");
-  const initialValues = [{ }];
-
-  const eth = window.ethereum;
-  console.log(eth);
+  const [connecetedAddress, setConnectedAddress] = useState("0x00");
+  const initialValues = {
+    name: "",
+    address: connecetedAddress 
+  };
+  
+  useEffect(async () => {
+    const address = await getWalletAddress();
+    if (address != null)
+      setConnectedAddress(address);
+  }, []);
+  
+  // Form submission handler.
+  const registerWithMetaMask = async (values) => {
+    await connectWeb3();
+    const address = await getWalletAddress();
+    setConnectedAddress(address);
+    console.log(`Registering with name "${values.name}" ` +
+      `and address ${address}`);
+  };
 
   return (
     <Layout links={links}>
@@ -34,27 +51,28 @@ const Register = () => {
           <div className="col md-3">
             <h1>Register</h1>
             <Formik
+              onSubmit={registerWithMetaMask}
               initialValues={initialValues}>
-                <Form className="register-form">
-                  <Input label="Your Ethereum Address" name="address" placeholder="0x00" />
-                  <Input label="Your profile name" name="name" placeholder="Profile Name" />
-                  <button
-                    className="btn btn-primary btn-block relative d-flex justify-content-center"
-                    type="submit"
-                    disabled={isSubmitting}
-                  >
-                    <Loader
-                      loading={isLoading}
-                      noBackground
-                      noStretch
-                      light
-                      diameter="1.4rem"
-                    />
-                    <span className="mx-2">Register with MetaMask</span>
-                  </button>
-                </Form>
+              <Form className="register-form">
+                <Input
+                  label="Your profile name"
+                  name="name"
+                  placeholder="Profile Name"
+                />
+                <Input
+                  disabled
+                  name="address"
+                  label="Your Ethereum Address"
+                  value={connecetedAddress}
+                />
+                <MetaMaskConnectButton
+                  type="submit"
+                  text="Register with MetaMask"
+                  loading={isLoading}
+                  disabled={isSubmitting}
+                />
+              </Form>
             </Formik>
-            <MetaMaskLoginButton />
           </div>
           <div className="col md-9">
             <h1>Creative profiles</h1>
