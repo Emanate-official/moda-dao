@@ -3,22 +3,27 @@ import web3 from "../apis/web3";
 import isWeb3Available from "../apis/web3/isAvailable";
 import Loader from "./Loader";
 
-const MetaMaskLoginButton = ({ onConnect, text, loading, disabled }) => {
+/**
+ * Component to use inside Forms for requesting to connect with MetaMask.
+ * This component does not handle the connection, only displays to the user
+ * whether they have MetaMask installed or not.
+ * Connecting to web3 should be done on the form submission handler.
+ */
+const MetaMaskLoginButton = ({ text, loading, disabled }) => {
   const [isAvailable, setIsAvailable] = useState(false);
   
   useEffect(() => {
     setIsAvailable(isWeb3Available());
   }, []);
   
-  const connect = async (event) => {
-    event?.preventDefault();
-    if (!isAvailable) {
-      console.log("opening");
-      window.open("https://metamask.io/", "_blank").focus();
+  const handleClick = async (event) => {
+    if (isAvailable)
+      // Let form handler manage submission.
       return;
-    }
-    await web3.currentProvider.enable();
-    onConnect();
+    
+    // Open MetaMask website on a new tab if not installed.
+    event.preventDefault();
+    window.open("https://metamask.io/", "_blank").focus();
   };
   
   return (
@@ -28,7 +33,7 @@ const MetaMaskLoginButton = ({ onConnect, text, loading, disabled }) => {
       disabled={!isAvailable || disabled}
       // Pointer cursor even if disabled, redirect to MetaMask page on click.
       style={{ cursor: "pointer" }}
-      onClick={connect}
+      onClick={handleClick}
     >
       <Loader
         loading={loading}
