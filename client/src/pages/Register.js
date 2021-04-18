@@ -7,6 +7,7 @@ import Input from "../components/form-inputs/Input";
 import Loader from "../components/Loader";
 import useSWR from "swr";
 import ErrorMessage from "../components/ErrorMessage";
+import Web3 from "web3";
 
 const Register = () => {
   const links = [
@@ -17,15 +18,73 @@ const Register = () => {
   ];
 
   const { data, error } = useSWR("/profile", { initialData: [], revalidateOnMount: true });
-  console.log(data);
+
+  const [loading, setLoading] = useState(false); // Loading button state
 
   const isLoading = !data && !error;
   const isSubmitting = false;
   // const [isSubmitting, setShow] = useState("");
-  const initialValues = [{ }];
+  const [address, setAddress] = useState("");
+  const initialValues = { 
+    address: "0x0001",
+    profile: "Test"
+  };
 
-  const eth = window.ethereum;
-  console.log(eth);
+  const web3 = new Web3(new Web3.providers.WebsocketProvider(process.env.REACT_APP_NODE));
+
+  const loadAddresses = async () => {
+    const { ethereum } = window;
+
+    if (typeof ethereum !== "undefined") {
+      // setError("MetaMask not installed!");
+      // return false;
+      const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+      console.log(accounts);
+      setAddress(accounts[0])
+    }
+
+    const coinbase = await web3.eth.getCoinbase();
+		if (!coinbase) {
+			window.alert('Please activate MetaMask first.');
+			return;
+		}
+  }
+
+	const handleAuthenticate = async ({
+		publicAddress,
+		signature,
+	}) => {
+		// fetch(`${process.env.REACT_APP_BACKEND_URL}/auth`, {
+		// 	body: JSON.stringify({ publicAddress, signature }),
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 	},
+		// 	method: 'POST',
+		// }).then((response) => response.json());
+  }
+
+  const handleSignMessage = async ({
+		publicAddress,
+		nonce,
+	}) => {
+		try {
+
+			const signature = await web3.eth.personal.sign(
+				`I am signing my one-time nonce: ${nonce}`,
+				publicAddress,
+				'' // MetaMask will ignore the password argument here
+			);
+
+			return { publicAddress, signature };
+		} catch (err) {
+			throw new Error(
+				'You need to sign the message to be able to log in.'
+			);
+		}
+	};
+
+
+  loadAddresses()
 
   return (
     <Layout links={links}>
@@ -37,7 +96,7 @@ const Register = () => {
               initialValues={initialValues}>
                 <Form className="register-form">
                   <Input label="Your Ethereum Address" name="address" placeholder="0x00" />
-                  <Input label="Your profile name" name="name" placeholder="Profile Name" />
+                  <Input label="Your profile name" name="profile" placeholder="Profile Name" />
                   <button
                     className="btn btn-primary btn-block relative d-flex justify-content-center"
                     type="submit"

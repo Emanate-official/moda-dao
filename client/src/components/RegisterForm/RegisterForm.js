@@ -9,12 +9,13 @@ import { AuthContext } from "../../Auth";
 import "./RegisterForm.scss";
 
 const RegisterForm = ({
-  initialValues = { username: "", password: "" },
+  initialValues: _inititalValues,
   noRedirect,
   onLogin
 }) => {
+
   const { user, login } = useContext(AuthContext);
-  if (user && !noRedirect) return <Redirect to="/" />;
+  // if (user && !noRedirect) return <Redirect to="/" />;
 
   const onSubmit = async (values, actions) => {
     try {

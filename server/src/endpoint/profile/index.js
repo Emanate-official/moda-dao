@@ -24,6 +24,10 @@ router.get("/profile/:address", async (request, response) => {
   response.send(result?.rows);
 });
 
+router.get("/profile/nonce", async (request, response) => {
+  response.send({nonce: 0});
+});
+
 router.post("/profile"),
   async (request, response) => {
 
