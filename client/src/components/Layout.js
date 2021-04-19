@@ -15,6 +15,8 @@ const Layout = ({
   // Set default links
   if (!links)
     links = [
+      { label: "Home", route: "/home" },
+      { label: "Register", route: "/register" },
       { label: "About", route: "/about" },
       { label: "Partners", route: "/partners" },
       { label: "People", route: "/people" }

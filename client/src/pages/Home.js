@@ -5,6 +5,8 @@ import Stats from "../components/Stats";
 
 const Home = () => {
   const links = [
+    { label: "Home", route: "/home" },
+    { label: "Register", route: "/register" },
     { label: "About", route: "/about" },
     { label: "Partners", route: "/partners" },
     { label: "People", route: "/people" }
