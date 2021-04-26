@@ -5,7 +5,7 @@ import Table from "./Table";
 const columnConfig = {
   id: {
     children: "Owner",
-    width: "15%"
+    width: "8%"
   },
   balance: {
     children: "Balance"
