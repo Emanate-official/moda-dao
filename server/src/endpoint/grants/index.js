@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/proposals", async (request, response) => {
+router.get("/grants", async (request, response) => {
   //
   const result = [
     {

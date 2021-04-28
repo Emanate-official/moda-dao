@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const grants = require("./endpoint/grants");
 const profile = require("./endpoint/profile");
 const stats = require("./endpoint/stats");
 
@@ -28,6 +29,7 @@ const initialiseServer = async () => {
   // Register endpoints.
   // app.use("/api", authentication);
   // app.use("/api", secureRoute, authenticationCheck);
+  app.use("/api", grants);
   app.use("/api", profile);
   app.use("/api", stats);
 
