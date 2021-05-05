@@ -16,7 +16,7 @@ const _Nav = ({ links, noBrand = false, noMetaMask = false, activeTab }) => {
 
   const renderMetaMask = () => (
     <Nav.Item>
-      Launch DAO
+      Connect
     </Nav.Item>
   );
 

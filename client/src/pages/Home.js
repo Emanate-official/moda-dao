@@ -2,14 +2,14 @@ import React from "react";
 import Layout from "../components/Layout";
 import Card from "../components/Card";
 import Stats from "../components/Stats";
+import Members from "../components/Members";
 
 const Home = () => {
+
   const links = [
-    { label: "Home", route: "/home" },
-    { label: "Register", route: "/register" },
-    { label: "About", route: "/about" },
-    { label: "Partners", route: "/partners" },
-    { label: "People", route: "/people" }
+    { label: "Project Information", route: "/stake" },
+    { label: "DAO HUB", route: "/dao" },
+    { label: "Music 3.0", route: "/music" }
   ];
 
   return (
@@ -17,23 +17,23 @@ const Home = () => {
       <div className="container-fluid py-5">
         <div className="row">
           <div className="col">
-            <h1>MODA DOA</h1>
-            <h2>Velit ad ad anim laborum ipsum laboris.</h2>
-            <p>
-              Incididunt do est ipsum aliquip eu do eiusmod laboris ut cillum proident. Deserunt commodo esse duis commodo labore. Tempor sit quis excepteur non commodo deserunt duis ex ut.
-            </p>
+            <h1>Music 3.0 is here.</h1>
+            <h2>Welcome to MODA DAO</h2>
           </div>
         </div>
+      </div>
+      <div className="container-fluid py-5">
         <div className="row">
-          <div className="col">
-<<<<<<< HEAD
-            <h2>Stats</h2>
-            <Stats></Stats>
-            <p></p>
-=======
+          <div className="col-3">
             <Stats>
             </Stats>
->>>>>>> 1145c25758b686635f28d56a6386b7656f3593c3
+          </div>
+          <div className="col-3">
+            <Members>
+            </Members>
+          </div>
+          <div className="col-3">
+            
           </div>
         </div>
       </div>

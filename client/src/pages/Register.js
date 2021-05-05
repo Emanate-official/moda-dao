@@ -11,14 +11,12 @@ import connectWeb3 from "../apis/web3/connect";
 
 const Register = () => {
   const links = [
-    { label: "Stake", route: "/stake" },
-    { label: "Vote", route: "/vote" },
-    { label: "Swap", route: "/swap" },
-    { label: "Activity", route: "/actvity" }
+    { label: "Project Information", route: "/stake" },
+    { label: "DAO HUB", route: "/dao" },
+    { label: "Music 3.0", route: "/music" }
   ];
 
   const { data, error } = useSWR("/profile", { initialData: [], revalidateOnMount: true });
-
   const [loading, setLoading] = useState(false); // Loading button state
 
   const isLoading = !data && !error;

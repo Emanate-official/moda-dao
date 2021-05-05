@@ -15,12 +15,11 @@ const Layout = ({
   // Set default links
   if (!links)
     links = [
-      { label: "Home", route: "/home" },
-      { label: "Register", route: "/register" },
-      { label: "About", route: "/about" },
-      { label: "Partners", route: "/partners" },
-      { label: "People", route: "/people" }
-    ];
+      { label: "Project Information", route: "/stake" },
+      { label: "DAO HUB", route: "/dao" },
+      { label: "Music 3.0", route: "/music" }
+  ];
+
 
   // For a dropdown menu item, add an object like this to the links array
   // {
