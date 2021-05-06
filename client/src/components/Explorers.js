@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import ExplorerTable from "../components/Tables/ExplorerTable";
 
 const Explorers = () => {
 
-  const events = [
+  const eth_events = [
     { event: "@Lazereys joined MODA DAO" }
   ]
 
-  const [eth, setEth] = useState(activities);
+  const eos_events = [
+    { event: "@Lazereys joined MODA DAO" }
+  ]
+
+  const [eth, setEth] = useState(eth_events);
+  const [eos, setEos] = useState(eos_events);
   // const [activity, setActivity] = useState(0);
 
   return (
@@ -14,22 +20,11 @@ const Explorers = () => {
       <h2>Explorers</h2>
 
       <h3>WAX</h3>
-      <ul className="list-group">
-
-        { eth.map((activity, index) => {
-            <li class="list-group-item"></li>
-            return <li key={ index }>{activity.label}</li>;
-          })}
-      </ul>
+      <ExplorerTable data={eos}></ExplorerTable>
 
       <h3>ETH</h3>
-      <ul className="list-group">
+      <ExplorerTable data={eth}></ExplorerTable>
 
-        { eth.map((activity, index) => {
-            <li class="list-group-item"></li>
-            return <li key={ index }>{activity.label}</li>;
-          })}
-      </ul>
     </div>
   );
 };

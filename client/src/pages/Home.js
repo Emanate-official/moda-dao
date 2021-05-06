@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import Card from "../components/Card";
 import Stats from "../components/Stats";
 import Members from "../components/Members";
+import Explorers from "../components/Explorers";
 
 const Home = () => {
 
@@ -33,7 +34,8 @@ const Home = () => {
             </Members>
           </div>
           <div className="col-3">
-            
+            <Explorers>
+            </Explorers>
           </div>
         </div>
       </div>
